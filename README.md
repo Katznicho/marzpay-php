@@ -167,6 +167,6 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 ## Support
 
-- Documentation: [https://docs.marzpay.com](https://docs.marzpay.com)
+- Documentation: [https://docs.marzpay.com](https://wallet.wearemarz.com/documentation)
 - Issues: [https://github.com/Katznicho/marzpay-php/issues](https://github.com/Katznicho/marzpay-php/issues)
 - Email: dev@wearemarz.com

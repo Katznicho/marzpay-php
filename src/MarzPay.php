@@ -120,8 +120,12 @@ class MarzPay
      */
     public function __construct(array $config)
     {
-        if (empty($config['api_key']) || empty($config['api_secret'])) {
-            throw new MarzPayException('API credentials are required', 'MISSING_CREDENTIALS', 400);
+        if (empty($config['api_key'])) {
+            throw new MarzPayException('API key is required', 'MISSING_API_KEY', 400);
+        }
+        
+        if (empty($config['api_secret'])) {
+            throw new MarzPayException('API secret is required', 'MISSING_API_SECRET', 400);
         }
 
         $this->config = array_merge([
@@ -357,5 +361,27 @@ class MarzPay
     public function callbackHandler(): CallbackHandler
     {
         return $this->callbackHandler;
+    }
+
+    // Utility methods
+
+    public function formatPhoneNumber(string $phoneNumber): string
+    {
+        return $this->phoneUtils->formatPhoneNumber($phoneNumber);
+    }
+
+    public function isValidPhoneNumber(string $phoneNumber): bool
+    {
+        return $this->phoneUtils->isValidPhoneNumber($phoneNumber);
+    }
+
+    public function generateReference(): string
+    {
+        return $this->utils->generateReference();
+    }
+
+    public function generateReferenceWithPrefix(string $prefix = 'REF'): string
+    {
+        return $this->utils->generateReferenceWithPrefix($prefix);
     }
 }

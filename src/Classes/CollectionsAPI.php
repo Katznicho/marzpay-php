@@ -237,5 +237,17 @@ class CollectionsAPI
 
         return $phoneNumber;
     }
+    
+    public function formatParams(array $params): array
+    {
+        $formatted = $params;
+        
+        // Format phone number
+        if (isset($formatted['phone_number'])) {
+            $formatted['phone_number'] = $this->marzpay->formatPhoneNumber($formatted['phone_number']);
+        }
+        
+        return $formatted;
+    }
 }
 

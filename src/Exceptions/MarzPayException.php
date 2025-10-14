@@ -50,7 +50,7 @@ class MarzPayException extends Exception
      */
     public function __construct(string $message = '', string $errorCode = 'UNKNOWN_ERROR', int $statusCode = 0, array $details = [])
     {
-        parent::__construct($message);
+        parent::__construct($message, $statusCode);
         $this->errorCode = $errorCode;
         $this->statusCode = $statusCode;
         $this->details = $details;
@@ -205,5 +205,69 @@ class MarzPayException extends Exception
     public function toJson(): string
     {
         return json_encode($this->toArray());
+    }
+
+    /**
+     * Set the error code
+     * 
+     * @param string $errorCode Error code
+     * @return void
+     */
+    public function setErrorCode(string $errorCode): void
+    {
+        $this->errorCode = $errorCode;
+    }
+
+    /**
+     * Set the HTTP status code
+     * 
+     * @param int $statusCode HTTP status code
+     * @return void
+     */
+    public function setStatus(int $statusCode): void
+    {
+        $this->statusCode = $statusCode;
+    }
+
+    /**
+     * Set response data
+     * 
+     * @param array $responseData Response data
+     * @return void
+     */
+    public function setResponseData(array $responseData): void
+    {
+        $this->details = $responseData;
+    }
+
+    /**
+     * Get response data
+     * 
+     * @return array Response data
+     */
+    public function getResponseData(): array
+    {
+        return $this->details;
+    }
+
+    /**
+     * Create exception from API response
+     * 
+     * @param array $apiResponse API response data
+     * @return MarzPayException
+     */
+    public static function fromApiResponse(array $apiResponse): self
+    {
+        $message = $apiResponse['message'] ?? 'API request failed';
+        $errorCode = $apiResponse['error_code'] ?? 'API_ERROR';
+        $status = $apiResponse['status'] ?? 'error';
+        $data = $apiResponse['data'] ?? [];
+
+        $exception = new self($message);
+        $exception->setErrorCode($errorCode);
+        $exception->setStatus($status === 'error' ? 400 : 200);
+        $exception->setResponseData($data);
+
+        return $exception;
     }
 }
