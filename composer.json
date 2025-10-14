@@ -1,0 +1,66 @@
+{
+    "name": "marzpay/php-sdk",
+    "description": "Official PHP SDK for MarzPay - Mobile Money Payment Platform for Uganda",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "marzpay",
+        "mobile-money",
+        "uganda",
+        "payments",
+        "collections",
+        "disbursements",
+        "api",
+        "sdk",
+        "laravel"
+    ],
+    "authors": [
+        {
+            "name": "MarzPay Team",
+            "email": "dev@wearemarz.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "guzzlehttp/guzzle": "^7.0",
+        "ramsey/uuid": "^4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "phpstan/phpstan": "^1.0",
+        "squizlabs/php_codesniffer": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MarzPay\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MarzPay\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MarzPay\\Laravel\\MarzPayServiceProvider"
+            ],
+            "aliases": {
+                "MarzPay": "MarzPay\\Laravel\\Facades\\MarzPay"
+            }
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-html coverage",
+        "stan": "phpstan analyse src tests",
+        "cs": "phpcs src tests",
+        "cs-fix": "phpcbf src tests"
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
