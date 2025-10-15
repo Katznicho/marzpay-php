@@ -1,6 +1,6 @@
 # Security Policy
 
-## 🔒 Supported Versions
+## Supported Versions
 
 We actively maintain and provide security updates for the following versions of the MarzPay PHP SDK:
 
@@ -43,7 +43,7 @@ If you are the first to report a security vulnerability and we fix it, we will:
 - Add you to our security hall of fame (if desired)
 - Consider additional recognition for significant contributions
 
-## 🛡️ Security Best Practices
+## Security Best Practices
 
 ### For SDK Users
 
@@ -137,7 +137,7 @@ function verifyWebhookSignature(Request $request): bool
 - Don't expose internal system details in error messages
 - Log detailed errors server-side, return generic messages to clients
 
-## 🔍 Security Audit
+## Security Audit
 
 ### For Developers
 
@@ -156,7 +156,7 @@ You can help by:
 2. **Keeping Updated**: Use the latest SDK version
 3. **Following Best Practices**: Implement recommended security measures
 
-## 📞 Contact
+## Contact
 
 For security-related questions or concerns:
 
@@ -164,7 +164,7 @@ For security-related questions or concerns:
 - **General Support**: support@wearemarz.com
 - **Documentation**: [MarzPay API Documentation](https://wallet.wearemarz.com/documentation)
 
-## 📋 Security Checklist
+## Security Checklist
 
 Before using the SDK in production:
 
@@ -186,6 +186,6 @@ We recognize security researchers who help improve the security of our SDK:
 
 ---
 
-**Thank you for helping keep MarzPay PHP SDK secure! 🛡️**
+**Thank you for helping keep MarzPay PHP SDK secure!**
 
 *Last updated: October 15, 2025*

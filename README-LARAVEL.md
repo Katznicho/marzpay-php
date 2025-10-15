@@ -2,7 +2,7 @@
 
 Complete guide for integrating the MarzPay PHP SDK with Laravel applications.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Installation
 
@@ -47,7 +47,7 @@ MARZPAY_BASE_URL=https://wallet.wearemarz.com/api/v1
 MARZPAY_TIMEOUT=30
 ```
 
-## 📝 Usage Examples
+## Usage Examples
 
 ### Using the Facade
 
@@ -251,7 +251,7 @@ class PaymentController extends Controller
 }
 ```
 
-## 🔧 Configuration
+## Configuration
 
 ### Configuration File
 
@@ -288,7 +288,7 @@ MARZPAY_BASE_URL=https://wallet.wearemarz.com/api/v1
 MARZPAY_TIMEOUT=30
 ```
 
-## 🛣️ Routes
+## Routes
 
 Add routes to your `routes/web.php` or `routes/api.php`:
 
@@ -313,7 +313,7 @@ Route::prefix('api/payments')->group(function () {
 });
 ```
 
-## 🧪 Testing
+## Testing
 
 ### Feature Tests
 
@@ -527,7 +527,7 @@ class WebhookController extends Controller
 Route::post('/webhooks/marzpay', [WebhookController::class, 'handleMarzPayWebhook']);
 ```
 
-## 📊 Database Integration
+## Database Integration
 
 ### Migration for Payment Records
 
@@ -630,7 +630,7 @@ class Payment extends Model
 }
 ```
 
-## 🎯 Best Practices
+## Best Practices
 
 ### 1. Error Handling
 
@@ -720,7 +720,7 @@ class ProcessPayment implements ShouldQueue
 }
 ```
 
-## 🔒 Security
+## Security
 
 ### 1. Webhook Verification
 
@@ -749,7 +749,7 @@ Route::middleware('throttle:60,1')->group(function () {
 });
 ```
 
-## 📱 Frontend Integration
+## Frontend Integration
 
 ### Vue.js Component Example
 
@@ -813,7 +813,7 @@ export default {
 </script>
 ```
 
-## 🚀 Deployment
+## Deployment
 
 ### Environment Configuration
 
@@ -837,14 +837,14 @@ php artisan config:cache
 php artisan route:cache
 ```
 
-## 📞 Support
+## Support
 
 For Laravel-specific support:
 
 - 📧 Email: support@wearemarz.com
-- 📚 Official Documentation: [MarzPay API Documentation](https://wallet.wearemarz.com/documentation)
+- Official Documentation: [MarzPay API Documentation](https://wallet.wearemarz.com/documentation)
 - 🐛 Issues: [GitHub Issues](https://github.com/marzpay/php-sdk/issues)
 
 ---
 
-**Happy coding with MarzPay and Laravel! 🚀**
+**Happy coding with MarzPay and Laravel!**

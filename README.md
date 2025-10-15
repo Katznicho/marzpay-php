@@ -2,23 +2,23 @@
 
 A comprehensive PHP SDK for the MarzPay API, providing seamless integration for payment collections, disbursements, and phone verification services in Uganda.
 
-## 🚀 Features
+## Features
 
-- **💰 Collect Money**: Accept payments from customers via MTN, Airtel, and other providers
-- **💸 Send Money**: Send money to recipients using various payment providers
-- **📱 Phone Verification**: Verify phone numbers and retrieve user information
-- **🔧 Laravel Integration**: Full Laravel support with ServiceProvider and Facade
-- **🛡️ Type Safety**: Comprehensive error handling and validation
-- **📚 Well Documented**: Extensive documentation and examples
+- **Collect Money**: Accept payments from customers via MTN, Airtel, and other providers
+- **Send Money**: Send money to recipients using various payment providers
+- **Phone Verification**: Verify phone numbers and retrieve user information
+- **Laravel Integration**: Full Laravel support with ServiceProvider and Facade
+- **Type Safety**: Comprehensive error handling and validation
+- **Well Documented**: Extensive documentation and examples
 
-## 📖 Documentation
+## Documentation
 
 - **[Complete Guide](README.md)** - This file with basic usage examples
 - **[Laravel Integration Guide](README-LARAVEL.md)** - Complete Laravel integration guide
 - **[API Reference](API-REFERENCE.md)** - Detailed API documentation
 - **[Testing Guide](README-TESTING.md)** - Testing setup and examples
 
-## 📦 Installation
+## Installation
 
 ### Via Composer
 
@@ -35,7 +35,7 @@ composer require marzpay/php-sdk
 require_once 'vendor/autoload.php';
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -69,7 +69,7 @@ $config = [
 $marzpay = new MarzPay($config);
 ```
 
-## 💰 Collect Money
+## Collect Money
 
 Accept payments from customers:
 
@@ -105,7 +105,7 @@ $details = $marzpay->collections()->getCollectionDetails($uuid);
 echo "Status: " . $details['data']['transaction']['status'] . "\n";
 ```
 
-## 💸 Send Money
+## Send Money
 
 Send money to recipients:
 
@@ -134,7 +134,7 @@ $details = $marzpay->disbursements()->getSendMoneyDetails($uuid);
 echo "Status: " . $details['data']['transaction']['status'] . "\n";
 ```
 
-## 📱 Phone Verification
+## Phone Verification
 
 Verify phone numbers and get user information:
 
@@ -161,7 +161,7 @@ echo "Service: " . $serviceInfo['data']['service_name'] . "\n";
 echo "Active: " . ($serviceInfo['data']['is_active'] ? 'Yes' : 'No') . "\n";
 ```
 
-## 🔧 Laravel Integration
+## Laravel Integration
 
 ### Installation
 
@@ -309,7 +309,7 @@ php run-tests.php coverage
 2. Add your real API credentials to `.env`
 3. Run tests
 
-## 📋 API Reference
+## API Reference
 
 ### Collections API
 
@@ -329,7 +329,7 @@ php run-tests.php coverage
 - `getServiceInfo()` - Get service information
 - `getSubscriptionStatus()` - Check subscription status
 
-## 🔒 Error Handling
+## Error Handling
 
 The SDK provides comprehensive error handling:
 
@@ -347,7 +347,7 @@ try {
 }
 ```
 
-## 📞 Phone Number Formatting
+## Phone Number Formatting
 
 The SDK automatically handles phone number formatting:
 
@@ -355,7 +355,7 @@ The SDK automatically handles phone number formatting:
 - Input: `+256759983853` → Output: `+256759983853`
 - Input: `256759983853` → Output: `+256759983853`
 
-## 🆔 UUID Generation
+## UUID Generation
 
 The SDK automatically generates valid UUID v4 references when not provided:
 
@@ -375,7 +375,7 @@ $collection = $marzpay->collections()->collectMoney([
 ]);
 ```
 
-## 🔗 Webhooks
+## Webhooks
 
 The SDK supports webhook callbacks:
 
@@ -387,7 +387,7 @@ $collection = $marzpay->collections()->collectMoney([
 ]);
 ```
 
-## 📊 Response Format
+## Response Format
 
 All API responses follow a consistent format:
 
@@ -418,7 +418,7 @@ All API responses follow a consistent format:
 }
 ```
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -426,19 +426,19 @@ All API responses follow a consistent format:
 4. Add tests
 5. Submit a pull request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🆘 Support
+## Support
 
 For support and questions:
 
-- 📧 Email: support@wearemarz.com
-- 📚 Official Documentation: [MarzPay API Documentation](https://wallet.wearemarz.com/documentation)
-- 🐛 Issues: [GitHub Issues](https://github.com/marzpay/php-sdk/issues)
+- Email: support@wearemarz.com
+- Official Documentation: [MarzPay API Documentation](https://wallet.wearemarz.com/documentation)
+- Issues: [GitHub Issues](https://github.com/marzpay/php-sdk/issues)
 
-## 🎉 Changelog
+## Changelog
 
 ### Version 1.0.0
 - Initial release
@@ -453,4 +453,4 @@ For support and questions:
 
 ---
 
-**Made with ❤️ by the MarzPay team**
+**Made by the MarzPay team**

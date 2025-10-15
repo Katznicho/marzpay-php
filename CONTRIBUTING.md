@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing to the MarzPay PHP SDK! This document provides guidelines and information for contributors.
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -35,7 +35,7 @@ Thank you for your interest in contributing to the MarzPay PHP SDK! This documen
    php run-tests.php unit
    ```
 
-## 📋 Development Guidelines
+## Development Guidelines
 
 ### Code Style
 
@@ -151,7 +151,7 @@ For feature requests, please include:
 2. **Proposed solution**: How should it work?
 3. **Alternatives**: What other solutions have you considered?
 
-## 🏗️ Architecture Guidelines
+## Architecture Guidelines
 
 ### Code Organization
 
@@ -199,7 +199,7 @@ class NewAPI
 }
 ```
 
-## 📚 Documentation
+## Documentation
 
 ### Updating Documentation
 
@@ -218,7 +218,7 @@ When adding new features:
 - Explain error cases
 - Keep examples up-to-date
 
-## 🧪 Testing Guidelines
+## Testing Guidelines
 
 ### Test Types
 
@@ -257,7 +257,7 @@ class NewAPITest extends TestCase
 - Use descriptive test method names
 - Test both success and failure cases
 
-## 🔒 Security
+## Security
 
 ### Security Guidelines
 
@@ -310,7 +310,7 @@ docs(readme): update installation instructions
 test(integration): add phone verification tests
 ```
 
-## 🏷️ Release Process
+## Release Process
 
 ### Version Numbering
 
@@ -329,7 +329,7 @@ We follow [Semantic Versioning](https://semver.org/):
 - [ ] Tagged in Git
 - [ ] Released to Packagist
 
-## 🤝 Community
+## Community
 
 ### Getting Help
 
@@ -345,13 +345,13 @@ We follow [Semantic Versioning](https://semver.org/):
 - Help others learn and grow
 - Follow the golden rule
 
-## 📄 License
+## License
 
 By contributing to this project, you agree that your contributions will be licensed under the MIT License.
 
 ---
 
-**Thank you for contributing to MarzPay PHP SDK! 🚀**
+**Thank you for contributing to MarzPay PHP SDK!**
 
 For more information, visit:
 - [MarzPay API Documentation](https://wallet.wearemarz.com/documentation)

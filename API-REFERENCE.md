@@ -2,7 +2,7 @@
 
 Complete API reference for the MarzPay PHP SDK.
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Core Classes](#core-classes)
 - [Collections API](#collections-api)
@@ -11,7 +11,7 @@ Complete API reference for the MarzPay PHP SDK.
 - [Exceptions](#exceptions)
 - [Response Formats](#response-formats)
 
-## 🏗️ Core Classes
+## Core Classes
 
 ### MarzPay
 
@@ -84,7 +84,7 @@ Returns the authentication header string.
 $authHeader = $marzpay->getAuthHeader(); // "Basic base64_encoded_credentials"
 ```
 
-## 💰 Collections API
+## Collections API
 
 ### Methods
 
@@ -140,7 +140,7 @@ Gets collection details by UUID.
 $details = $marzpay->collections()->getCollectionDetails('123e4567-e89b-12d3-a456-426614174000');
 ```
 
-## 💸 Disbursements API
+## Disbursements API
 
 ### Methods
 
@@ -205,7 +205,7 @@ Alias for `getSendMoneyDetails()`.
 
 **Returns:** `array` - Disbursement details
 
-## 📱 Phone Verification API
+## Phone Verification API
 
 ### Methods
 
@@ -295,7 +295,7 @@ try {
 }
 ```
 
-## 📊 Response Formats
+## Response Formats
 
 ### Collection Response
 
@@ -446,7 +446,7 @@ try {
 }
 ```
 
-## 🔧 Utility Methods
+## Utility Methods
 
 ### Phone Number Formatting
 
@@ -488,7 +488,7 @@ $collection = $marzpay->collections()->collectMoney([
 | 429 | Too Many Requests - Rate limit exceeded |
 | 500 | Internal Server Error |
 
-## 🔗 Webhooks
+## Webhooks
 
 ### Webhook Events
 
@@ -581,7 +581,7 @@ $marzpay = new MarzPay([
 ]);
 ```
 
-## 🔍 Debugging
+## Debugging
 
 ### Enable Debug Mode
 
