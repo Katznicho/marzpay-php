@@ -10,35 +10,33 @@ Complete guide for integrating the MarzPay PHP SDK with Laravel applications.
 composer require marzpay/php-sdk
 ```
 
-### 2. Register Service Provider
+### 2. Laravel Auto-Discovery (Recommended)
 
-Add the service provider to `config/app.php`:
+Laravel will automatically register the service provider and facade. No additional configuration needed!
+
+**For Laravel 5.5+**: The package supports auto-discovery, so the service provider and facade will be automatically registered.
+
+**For older Laravel versions or manual setup**, add to `config/app.php`:
 
 ```php
 'providers' => [
     // ...
     MarzPay\Laravel\Providers\MarzPayServiceProvider::class,
 ],
-```
 
-### 3. Add Facade Alias (Optional)
-
-Add the facade alias to `config/app.php`:
-
-```php
 'aliases' => [
     // ...
     'MarzPay' => MarzPay\Laravel\Facades\MarzPay::class,
 ],
 ```
 
-### 4. Publish Configuration
+### 3. Publish Configuration
 
 ```bash
 php artisan vendor:publish --tag=marzpay-config
 ```
 
-### 5. Configure Environment
+### 4. Configure Environment
 
 Add to your `.env` file:
 
@@ -844,7 +842,7 @@ php artisan route:cache
 For Laravel-specific support:
 
 - 📧 Email: support@wearemarz.com
-- 📚 Documentation: [Laravel Integration Guide](https://docs.wearemarz.com/laravel)
+- 📚 Official Documentation: [MarzPay API Documentation](https://wallet.wearemarz.com/documentation)
 - 🐛 Issues: [GitHub Issues](https://github.com/marzpay/php-sdk/issues)
 
 ---

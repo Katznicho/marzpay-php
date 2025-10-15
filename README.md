@@ -166,28 +166,22 @@ echo "Active: " . ($serviceInfo['data']['is_active'] ? 'Yes' : 'No') . "\n";
 ### Installation
 
 1. Install the package via Composer
-2. Register the service provider in `config/app.php`:
-
-```php
-'providers' => [
-    // ...
-    MarzPay\Laravel\Providers\MarzPayServiceProvider::class,
-],
-```
-
-3. Add the facade alias in `config/app.php`:
-
-```php
-'aliases' => [
-    // ...
-    'MarzPay' => MarzPay\Laravel\Facades\MarzPay::class,
-],
-```
-
-4. Publish the configuration file:
+2. **Laravel Auto-Discovery**: The service provider and facade are automatically registered (Laravel 5.5+)
+3. Publish the configuration file:
 
 ```bash
 php artisan vendor:publish --tag=marzpay-config
+```
+
+**For older Laravel versions**, manually register in `config/app.php`:
+
+```php
+'providers' => [
+    MarzPay\Laravel\Providers\MarzPayServiceProvider::class,
+],
+'aliases' => [
+    'MarzPay' => MarzPay\Laravel\Facades\MarzPay::class,
+],
 ```
 
 ### Laravel Usage
@@ -441,7 +435,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 For support and questions:
 
 - 📧 Email: support@wearemarz.com
-- 📚 Documentation: [API Documentation](https://docs.wearemarz.com)
+- 📚 Official Documentation: [MarzPay API Documentation](https://wallet.wearemarz.com/documentation)
 - 🐛 Issues: [GitHub Issues](https://github.com/marzpay/php-sdk/issues)
 
 ## 🎉 Changelog

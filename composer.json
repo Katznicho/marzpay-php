@@ -43,7 +43,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "MarzPay\\Laravel\\MarzPayServiceProvider"
+                "MarzPay\\Laravel\\Providers\\MarzPayServiceProvider"
             ],
             "aliases": {
                 "MarzPay": "MarzPay\\Laravel\\Facades\\MarzPay"
