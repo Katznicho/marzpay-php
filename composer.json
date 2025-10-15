@@ -1,8 +1,16 @@
 {
     "name": "marzpay/php-sdk",
     "description": "Official PHP SDK for MarzPay - Mobile Money Payment Platform for Uganda",
+    "version": "1.0.0",
     "type": "library",
     "license": "MIT",
+    "homepage": "https://github.com/Katznicho/marzpay-php",
+    "support": {
+        "email": "support@wearemarz.com",
+        "issues": "https://github.com/Katznicho/marzpay-php/issues",
+        "source": "https://github.com/Katznicho/marzpay-php",
+        "docs": "https://wallet.wearemarz.com/documentation"
+    },
     "keywords": [
         "marzpay",
         "mobile-money",
