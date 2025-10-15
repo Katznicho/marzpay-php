@@ -1,0 +1,36 @@
+# Environment files
+.env
+.env.local
+.env.production
+
+# Composer
+/vendor/
+composer.lock
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Test coverage
+coverage/
+clover.xml
+
+# Build artifacts
+build/
+dist/

@@ -93,7 +93,7 @@ class TestRunner
     private function runQuickTest(): void
     {
         echo "Running quick validation test...\n";
-        $this->executeCommand('php test-quick.php');
+        $this->executeCommand('vendor/bin/phpunit tests/Unit --colors=always');
     }
     
     private function executeCommand(string $command): void

@@ -14,58 +14,72 @@ class PhoneVerificationAPI
         $this->marzpay = $marzpay;
     }
     
-    public function validatePhoneNumber(string $phoneNumber): array
+    /**
+     * Verify a phone number and retrieve associated user information
+     * 
+     * @param string $phoneNumber Uganda phone number
+     * @return array Verification result with user information
+     * 
+     * @throws MarzPayException When request fails
+     */
+    public function verifyPhoneNumber(string $phoneNumber): array
     {
-        if (!$this->marzpay->isValidPhoneNumber($phoneNumber)) {
-            throw new MarzPayException('Invalid phone number format');
-        }
+        $formattedPhone = $this->formatPhoneNumber($phoneNumber);
         
-        $formattedPhone = $this->marzpay->formatPhoneNumber($phoneNumber);
-        
-        return $this->marzpay->makeRequest('POST', '/phone-verification/validate', [
+        $payload = [
             'phone_number' => $formattedPhone
+        ];
+        
+        return $this->marzpay->request('/phone-verification/verify', [
+            'method' => 'POST',
+            'body' => $payload,
+            'content_type' => 'json'
         ]);
     }
     
-    public function sendVerificationCode(string $phoneNumber): array
+    /**
+     * Get information about the phone verification service
+     * 
+     * @return array Service information
+     */
+    public function getServiceInfo(): array
     {
-        if (!$this->marzpay->isValidPhoneNumber($phoneNumber)) {
-            throw new MarzPayException('Invalid phone number format');
-        }
-        
-        $formattedPhone = $this->marzpay->formatPhoneNumber($phoneNumber);
-        
-        return $this->marzpay->makeRequest('POST', '/phone-verification/send-code', [
-            'phone_number' => $formattedPhone
-        ]);
+        return $this->marzpay->request('/phone-verification/service-info');
     }
     
-    public function verifyCode(string $phoneNumber, string $code): array
+    /**
+     * Check subscription status for phone verification service
+     * 
+     * @return array Subscription status
+     */
+    public function getSubscriptionStatus(): array
     {
-        if (!$this->marzpay->isValidPhoneNumber($phoneNumber)) {
-            throw new MarzPayException('Invalid phone number format');
-        }
-        
-        if (empty($code)) {
-            throw new MarzPayException('Verification code is required');
-        }
-        
-        $formattedPhone = $this->marzpay->formatPhoneNumber($phoneNumber);
-        
-        return $this->marzpay->makeRequest('POST', '/phone-verification/verify-code', [
-            'phone_number' => $formattedPhone,
-            'code' => $code
-        ]);
+        return $this->marzpay->request('/phone-verification/subscription-status');
     }
     
-    public function getVerificationStatus(string $phoneNumber): array
+    /**
+     * Format phone number for API (remove + prefix, ensure 256XXXXXXXXX format)
+     * 
+     * @param string $phoneNumber
+     * @return string
+     */
+    private function formatPhoneNumber(string $phoneNumber): string
     {
-        if (!$this->marzpay->isValidPhoneNumber($phoneNumber)) {
-            throw new MarzPayException('Invalid phone number format');
+        // Remove any non-digit characters except +
+        $phoneNumber = preg_replace('/[^0-9+]/', '', $phoneNumber);
+        
+        // Remove + if present
+        $phoneNumber = str_replace('+', '', $phoneNumber);
+        
+        // Add country code if not present
+        if (!str_starts_with($phoneNumber, '256')) {
+            if (str_starts_with($phoneNumber, '0')) {
+                $phoneNumber = '256' . substr($phoneNumber, 1);
+            } else {
+                $phoneNumber = '256' . $phoneNumber;
+            }
         }
         
-        $formattedPhone = $this->marzpay->formatPhoneNumber($phoneNumber);
-        
-        return $this->marzpay->makeRequest('GET', "/phone-verification/status/$formattedPhone");
+        return $phoneNumber;
     }
 }

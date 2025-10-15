@@ -79,18 +79,22 @@ class CollectionsAPI
     {
         $this->validateCollectMoneyParams($params);
 
+        // Generate a valid UUID if no reference provided
+        $reference = $params['reference'] ?? $this->generateUUID();
+        
         $payload = [
-            'amount' => $params['amount'],
+            'amount' => (string) $params['amount'], // API expects string
             'phone_number' => $this->formatPhoneNumber($params['phone_number']),
-            'reference' => $params['reference'],
-            'description' => $params['description'] ?? null,
+            'reference' => $reference,
+            'description' => $params['description'] ?? 'Payment for services',
             'callback_url' => $params['callback_url'] ?? null,
             'country' => $params['country'] ?? 'UG',
         ];
 
-        return $this->marzpay->request('/collections', [
+        return $this->marzpay->request('/collect-money', [
             'method' => 'POST',
-            'body' => $payload
+            'body' => $payload,
+            'content_type' => 'multipart'
         ]);
     }
 
@@ -162,7 +166,20 @@ class CollectionsAPI
      */
     public function getServices(): array
     {
-        return $this->marzpay->request('/collections/services');
+        return $this->marzpay->request('/collect-money/services');
+    }
+
+    /**
+     * Get collection details by UUID
+     * 
+     * @param string $uuid Collection UUID
+     * @return array Collection details
+     * 
+     * @throws MarzPayException When request fails
+     */
+    public function getCollectionDetails(string $uuid): array
+    {
+        return $this->marzpay->request('/collect-money/' . $uuid);
     }
 
     /**
@@ -223,8 +240,11 @@ class CollectionsAPI
      */
     private function formatPhoneNumber(string $phoneNumber): string
     {
-        // Remove any non-digit characters
-        $phoneNumber = preg_replace('/[^0-9]/', '', $phoneNumber);
+        // Remove any non-digit characters except +
+        $phoneNumber = preg_replace('/[^0-9+]/', '', $phoneNumber);
+        
+        // Remove + if present for processing
+        $phoneNumber = str_replace('+', '', $phoneNumber);
         
         // Add country code if not present
         if (!str_starts_with($phoneNumber, '256')) {
@@ -235,7 +255,8 @@ class CollectionsAPI
             }
         }
 
-        return $phoneNumber;
+        // Add + prefix as required by API
+        return '+' . $phoneNumber;
     }
     
     public function formatParams(array $params): array
@@ -248,6 +269,23 @@ class CollectionsAPI
         }
         
         return $formatted;
+    }
+
+    /**
+     * Generate a valid UUID v4
+     * 
+     * @return string
+     */
+    private function generateUUID(): string
+    {
+        return sprintf(
+            '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+            mt_rand(0, 0xffff), mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0x0fff) | 0x4000,
+            mt_rand(0, 0x3fff) | 0x8000,
+            mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
+        );
     }
 }
 

@@ -184,12 +184,38 @@ class MarzPay
         ];
 
         if ($body && in_array(strtoupper($method), ['POST', 'PUT', 'PATCH'])) {
-            $requestOptions['json'] = $body;
+            // Check if we should send as multipart form data
+            if (isset($options['content_type']) && $options['content_type'] === 'multipart') {
+                $multipart = [];
+                foreach ($body as $key => $value) {
+                    $multipart[] = [
+                        'name' => $key,
+                        'contents' => $value
+                    ];
+                }
+                $requestOptions['multipart'] = $multipart;
+            } elseif (isset($options['content_type']) && $options['content_type'] === 'form') {
+                $requestOptions['form_params'] = $body;
+            } else {
+                $requestOptions['json'] = $body;
+            }
         }
 
         try {
-            $response = $this->client->request($method, $endpoint, $requestOptions);
-            $responseData = json_decode($response->getBody()->getContents(), true);
+            // Construct full URL manually to ensure base_uri is used correctly
+            $fullUrl = $this->config['base_url'] . $endpoint;
+            $response = $this->client->request($method, $fullUrl, $requestOptions);
+            $responseBody = $response->getBody()->getContents();
+            $responseData = json_decode($responseBody, true);
+
+            // Handle empty or null response
+            if ($responseData === null) {
+                return [
+                    'status' => 'error',
+                    'message' => 'Empty or invalid response from API',
+                    'data' => null
+                ];
+            }
 
             return $responseData;
         } catch (RequestException $e) {
@@ -277,6 +303,24 @@ class MarzPay
                 'Laravel Integration'
             ]
         ];
+    }
+
+    /**
+     * Make HTTP request to MarzPay API (alias for request method)
+     * 
+     * @param string $method HTTP method
+     * @param string $endpoint API endpoint
+     * @param array $data Request data
+     * @return array API response
+     */
+    public function makeRequest(string $method, string $endpoint, array $data = []): array
+    {
+        $options = [
+            'method' => $method,
+            'body' => $data
+        ];
+        
+        return $this->request($endpoint, $options);
     }
 
     /**

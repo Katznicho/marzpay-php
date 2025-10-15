@@ -11,9 +11,9 @@ return [
     |
     */
 
-    'api_key' => env('MARZPAY_API_KEY'),
-    'api_secret' => env('MARZPAY_API_SECRET'),
-    'base_url' => env('MARZPAY_BASE_URL', 'https://wallet.wearemarz.com/api/v1'),
-    'timeout' => env('MARZPAY_TIMEOUT', 30),
+    'api_key' => function_exists('env') ? env('MARZPAY_API_KEY') : ($_ENV['MARZPAY_API_KEY'] ?? null),
+    'api_secret' => function_exists('env') ? env('MARZPAY_API_SECRET') : ($_ENV['MARZPAY_API_SECRET'] ?? null),
+    'base_url' => function_exists('env') ? env('MARZPAY_BASE_URL', 'https://wallet.wearemarz.com/api/v1') : ($_ENV['MARZPAY_BASE_URL'] ?? 'https://wallet.wearemarz.com/api/v1'),
+    'timeout' => function_exists('env') ? env('MARZPAY_TIMEOUT', 30) : ($_ENV['MARZPAY_TIMEOUT'] ?? 30),
 ];
 
